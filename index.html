@@ -51,6 +51,14 @@
       line-height: 1.4;
     }
 
+    p.proposal-text {
+      color: #334155;
+      font-size: 1.02rem;
+      line-height: 1.5;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
     /* Marco para la imagen */
     .photo-card {
       background: #f8fafc;
@@ -66,6 +74,7 @@
       height: 380px;
       border-radius: 12px;
       overflow: hidden;
+      background-color: #e2e8f0;
     }
 
     .photo-container img {
@@ -87,6 +96,13 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .grid-plans {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
     }
 
     .btn {
@@ -132,14 +148,18 @@
       </div>
     </div>
 
-    <!-- PASO 2: Elección de Plan -->
+    <!-- PASO 2: Reflexión y Propuesta -->
     <div id="step2" class="step">
-      <div class="sims-header">Celebración ☕</div>
-      <h1>¿Festejamos con algo rico?</h1>
-      <div class="btn-container">
-        <button class="btn btn-blue" onclick="finalizar('Merienda')">Merienda ☕</button>
-        <button class="btn btn-blue" onclick="finalizar('Picnic')">Picnic 🧺</button>
+      <div class="sims-header">Primavera 🌸</div>
+      <p class="proposal-text">
+        No hay nada más difícil que ser estudiante universitario porque casi todo depende de vos, más si algunos días son complicados emocionalmente. Por eso para descomprimir te propongo hacer algo lindo por la primavera:
+      </p>
+      
+      <div class="grid-plans">
+        <button class="btn btn-blue" onclick="finalizar('Desayuno')">Desayuno ☕</button>
+        <button class="btn btn-blue" onclick="finalizar('Merienda')">Merienda 🍰</button>
         <button class="btn btn-blue" onclick="finalizar('Cine')">Cine 🍿</button>
+        <button class="btn btn-blue" onclick="finalizar('Paseo en la costa')">Paseo en la costa 🌊</button>
       </div>
     </div>
 
@@ -167,7 +187,7 @@
 
     function enviarWhatsApp() {
       const miNumero = "5492236907429"; 
-      const mensaje = `¡Hola! Feliz día del estudiante 📚 Quedamos para hacer un plan de ${planElegido} 😊`;
+      const mensaje = `¡Hola! Feliz día del estudiante 📚 Quedamos para hacer un plan de ${planElegido} por la primavera 😊`;
       window.location.href = `https://wa.me/${miNumero}?text=${encodeURIComponent(mensaje)}`;
     }
   </script>
