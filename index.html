@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Día del Estudiante 🩺✨</title>
+  <title>Día del Estudiante & Primavera 🌸🩺</title>
   <style>
     * { box-sizing: border-box; }
     
@@ -15,24 +16,25 @@
       min-height: 100vh;
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(135deg, #0b1e36 0%, #17365d 100%);
+      background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%);
       text-align: center;
       padding: 20px;
     }
 
     .sims-card {
-      background: #ffffff;
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
       padding: 26px 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12), inset 0 0 15px rgba(46,204,113,0.15);
+      border: 3px solid #2ecc71;
       max-width: 400px;
       width: 100%;
       position: relative;
     }
 
     .sims-header {
-      background: #17365d;
-      color: #00ff75;
+      background: #27ae60;
+      color: #ffffff;
       padding: 6px 14px;
       border-radius: 30px;
       font-weight: 600;
@@ -44,7 +46,7 @@
     }
 
     h1 {
-      color: #0b1e36;
+      color: #1e5631;
       font-size: 1.15rem;
       margin-bottom: 18px;
       font-weight: 600;
@@ -52,17 +54,16 @@
     }
 
     p.proposal-text {
-      color: #334155;
+      color: #2c3e50;
       font-size: 1.02rem;
       line-height: 1.5;
       margin-bottom: 22px;
       text-align: center;
     }
 
-    /* Marco para la imagen */
     .photo-card {
-      background: #f8fafc;
-      border: 2px solid #e2e8f0;
+      background: #ffffff;
+      border: 2px solid #a8e6cf;
       border-radius: 16px;
       padding: 8px;
       margin-bottom: 20px;
@@ -88,7 +89,7 @@
       margin-top: 8px;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #17365d;
+      color: #1e5631;
     }
 
     .btn-container {
@@ -119,9 +120,71 @@
       width: 100%;
     }
 
-    .btn-blue { background: #2980b9; }
+    .btn-blue { background: #3498db; }
+    .btn-pink { background: #ff7675; }
 
     .btn:hover { transform: translateY(-2px); }
+
+    /* Cartelera Aldrey */
+    .movie-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 340px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .movie-card {
+      background: #ffffff;
+      border: 2px solid #a8e6cf;
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .movie-card:hover {
+      border-color: #27ae60;
+      transform: translateY(-1px);
+    }
+
+    .movie-poster {
+      width: 55px;
+      height: 80px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      padding: 4px;
+      text-align: center;
+    }
+
+    .movie-poster span {
+      font-size: 1.3rem;
+      margin-bottom: 2px;
+    }
+
+    .movie-info h3 {
+      margin: 0 0 3px 0;
+      color: #1e5631;
+      font-size: 0.95rem;
+    }
+
+    .movie-info p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.78rem;
+      line-height: 1.25;
+    }
 
     .step { display: none; }
     .step.active { display: block; }
@@ -133,7 +196,7 @@
     
     <!-- PASO 1: Mensaje y Foto Editada -->
     <div id="step1" class="step active">
-      <div class="sims-header">21 de Septiembre 📚✨</div>
+      <div class="sims-header">21 de Septiembre 📚🌸</div>
       <h1>Supongo que sabés que el 21 es el día del estudiante y por eso quiero recordarte que confío en vos</h1>
       
       <div class="photo-card">
@@ -144,27 +207,120 @@
       </div>
 
       <div class="btn-container">
-        <button class="btn" onclick="nextStep(2)">Continuar ✨</button>
+        <button class="btn" onclick="nextStep('step2')">Continuar ✨</button>
       </div>
     </div>
 
-    <!-- PASO 2: Reflexión y Propuesta -->
+    <!-- PASO 2: Reflexión y Propuesta Primavera -->
     <div id="step2" class="step">
-      <div class="sims-header">Primavera 🌸</div>
+      <div class="sims-header">Especial Primavera 🌺</div>
       <p class="proposal-text">
         No hay nada más difícil que ser estudiante universitario porque casi todo depende de vos, más si algunos días son complicados emocionalmente. Por eso para descomprimir te propongo hacer algo lindo por la primavera:
       </p>
       
       <div class="grid-plans">
-        <button class="btn btn-blue" onclick="finalizar('Desayuno')">Desayuno ☕</button>
-        <button class="btn btn-blue" onclick="finalizar('Merienda')">Merienda 🍰</button>
-        <button class="btn btn-blue" onclick="finalizar('Cine')">Cine 🍿</button>
-        <button class="btn btn-blue" onclick="finalizar('Paseo en la costa')">Paseo en la costa 🌊</button>
+        <button class="btn btn-blue" onclick="elegirPlan('Desayuno')">Desayuno ☕</button>
+        <button class="btn btn-blue" onclick="elegirPlan('Merienda')">Merienda 🍰</button>
+        <button class="btn btn-pink" onclick="elegirPlan('Cine')">Cine 🍿</button>
+        <button class="btn btn-blue" onclick="elegirPlan('Paseo en la costa')">Paseo en la costa 🌊</button>
       </div>
     </div>
 
-    <!-- PASO 3: Confirmación final -->
-    <div id="step3" class="step">
+    <!-- PASO 3A: Opciones para Desayuno / Merienda -->
+    <div id="step3_cafeteria" class="step">
+      <div class="sims-header">Lugar 🥐</div>
+      <h1>¿Dónde te gustaría ir?</h1>
+      <div class="btn-container">
+        <button class="btn btn-blue" onclick="elegirLugar('Sao')">Sao 🥐</button>
+        <button class="btn btn-blue" onclick="elegirLugar('La Fonte')">La Fonte ☕</button>
+      </div>
+    </div>
+
+    <!-- PASO 3B: Cartelera Paseo Aldrey para Cine -->
+    <div id="step3_cine" class="step">
+      <div class="sims-header">Paseo Aldrey 🎬</div>
+      <h1>¿Qué película te pinta ver?</h1>
+      <div class="movie-grid">
+        
+        <div class="movie-card" onclick="elegirLugar('Cine - Hechizo de Amor')">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #8e44ad, #2c3e50);">
+            <span>🔮</span> HECHIZO
+          </div>
+          <div class="movie-info">
+            <h3>Hechizo de Amor</h3>
+            <p>Comedia dramática y romance sobre el reencuentro de las hermanas Owens.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="elegirLugar('Cine - Resident Evil: Noche Cero')">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #c0392b, #7f8c8d);">
+            <span>☣️</span> RESIDENT
+          </div>
+          <div class="movie-info">
+            <h3>Resident Evil: Noche Cero</h3>
+            <p>Acción y suspenso en una noche en la ciudad.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="elegirLugar('Cine - La Odisea')">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #1e3799, #0c2461);">
+            <span>🏛️</span> ODISEA
+          </div>
+          <div class="movie-info">
+            <h3>La Odisea</h3>
+            <p>Superproducción épica dirigida por Christopher Nolan.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="elegirLugar('Cine - Pepita la Pistolera')">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #d35400, #2c3e50);">
+            <span>🔫</span> PEPITA
+          </div>
+          <div class="movie-info">
+            <h3>Pepita la Pistolera</h3>
+            <p>Basada en la famosa historia real marplatense de 1985.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PASO 4: Selección de Horarios según el plan -->
+    <div id="step4_horarios" class="step">
+      <div class="sims-header">Horario ⏰</div>
+      <h1>¿A qué hora te queda mejor?</h1>
+      
+      <div id="horariosDesayuno" class="btn-container" style="display:none;">
+        <button class="btn btn-blue" onclick="elegirHorario('9:00 AM')">9:00 AM</button>
+        <button class="btn btn-blue" onclick="elegirHorario('10:00 AM')">10:00 AM</button>
+        <button class="btn btn-blue" onclick="elegirHorario('11:00 AM')">11:00 AM</button>
+      </div>
+
+      <div id="horariosTarde" class="btn-container" style="display:none;">
+        <button class="btn btn-blue" onclick="elegirHorario('4:30 PM')">4:30 PM</button>
+        <button class="btn btn-blue" onclick="elegirHorario('5:30 PM')">5:30 PM</button>
+        <button class="btn btn-blue" onclick="elegirHorario('6:30 PM')">6:30 PM</button>
+      </div>
+
+      <div id="horariosCine" class="btn-container" style="display:none;">
+        <button class="btn btn-blue" onclick="elegirHorario('6:00 PM')">6:00 PM</button>
+        <button class="btn btn-blue" onclick="elegirHorario('8:15 PM')">8:15 PM</button>
+        <button class="btn btn-blue" onclick="elegirHorario('10:00 PM')">10:00 PM</button>
+      </div>
+    </div>
+
+    <!-- PASO 5: Encuentro -->
+    <div id="step5_encuentro" class="step">
+      <div class="sims-header">Punto de Encuentro 🚗</div>
+      <h1>¿Cómo hacemos?</h1>
+      <div class="btn-container">
+        <button class="btn btn-blue" onclick="finalizarEncuentro('Nos encontramos ahí')">Nos encontramos ahí 📍</button>
+        <button class="btn btn-blue" onclick="finalizarEncuentro('Te paso a buscar')">Te paso a buscar 🚗</button>
+      </div>
+    </div>
+
+    <!-- PASO FINAL: Confirmación de Respuesta -->
+    <div id="step_final" class="step">
       <div class="sims-header">Confirmación 📲</div>
       <h1>¡Listo! Mandame la respuesta por WhatsApp 😉</h1>
       <button class="btn" style="margin-top: 15px;" onclick="enviarWhatsApp()">Enviar WhatsApp 📲</button>
@@ -174,20 +330,66 @@
 
   <script>
     let planElegido = '';
+    let detalleLugar = '';
+    let horarioElegido = '';
+    let encuentroElegido = '';
 
-    function nextStep(stepNumber) {
+    function showStep(stepId) {
       document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-      document.getElementById(`step${stepNumber}`).classList.add('active');
+      document.getElementById(stepId).classList.add('active');
     }
 
-    function finalizar(plan) {
+    function nextStep(stepId) {
+      showStep(stepId);
+    }
+
+    function elegirPlan(plan) {
       planElegido = plan;
-      nextStep(3);
+      
+      if (plan === 'Desayuno') {
+        showStep('step3_cafeteria');
+      } else if (plan === 'Merienda') {
+        showStep('step3_cafeteria');
+      } else if (plan === 'Cine') {
+        showStep('step3_cine');
+      } else if (plan === 'Paseo en la costa') {
+        detalleLugar = 'Paseo en la costa';
+        mostrarHorarios('tarde');
+      }
+    }
+
+    function elegirLugar(lugar) {
+      detalleLugar = lugar;
+      if (planElegido === 'Desayuno') {
+        mostrarHorarios('desayuno');
+      } else if (planElegido === 'Merienda') {
+        mostrarHorarios('tarde');
+      } else if (planElegido === 'Cine') {
+        mostrarHorarios('cine');
+      }
+    }
+
+    function mostrarHorarios(tipo) {
+      document.getElementById('horariosDesayuno').style.display = tipo === 'desayuno' ? 'flex' : 'none';
+      document.getElementById('horariosTarde').style.display = tipo === 'tarde' ? 'flex' : 'none';
+      document.getElementById('horariosCine').style.display = tipo === 'cine' ? 'flex' : 'none';
+      showStep('step4_horarios');
+    }
+
+    function elegirHorario(horario) {
+      horarioElegido = horario;
+      showStep('step5_encuentro');
+    }
+
+    function finalizarEncuentro(modo) {
+      encuentroElegido = modo;
+      showStep('step_final');
     }
 
     function enviarWhatsApp() {
       const miNumero = "5492236907429"; 
-      const mensaje = `¡Hola! Feliz día del estudiante 📚 Quedamos para hacer un plan de ${planElegido} por la primavera 😊`;
+      let textoDetalle = detalleLugar ? ` (${detalleLugar})` : '';
+      const mensaje = `¡Hola! Feliz día del estudiante 📚 Quedamos para un plan de ${planElegido}${textoDetalle} a las ${horarioElegido}. Modos: ${encuentroElegido} 😊`;
       window.location.href = `https://wa.me/${miNumero}?text=${encodeURIComponent(mensaje)}`;
     }
   </script>
