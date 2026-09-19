@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Día del Estudiante ✨</title>
+  <title>Día del Estudiante 🩺✨</title>
   <style>
     * { box-sizing: border-box; }
     
@@ -22,9 +22,8 @@
 
     .sims-card {
       background: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
-      padding: 28px 22px;
+      padding: 26px 20px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.3);
       max-width: 400px;
       width: 100%;
@@ -41,26 +40,32 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       display: inline-block;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     h1 {
       color: #0b1e36;
-      font-size: 1.25rem;
-      margin-bottom: 20px;
+      font-size: 1.15rem;
+      margin-bottom: 18px;
       font-weight: 600;
       line-height: 1.4;
     }
 
-    /* Foto de la futura obstetra */
+    /* Marco para la imagen */
+    .photo-card {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
     .photo-container {
       width: 100%;
-      max-height: 380px;
-      border-radius: 16px;
+      height: 380px;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-      border: 2px solid #e2e8f0;
     }
 
     .photo-container img {
@@ -70,17 +75,23 @@
       display: block;
     }
 
+    .photo-caption {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #17365d;
+    }
+
     .btn-container {
       position: relative;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .btn {
-      padding: 12px 24px;
-      font-size: 1rem;
+      padding: 12px 20px;
+      font-size: 0.98rem;
       font-weight: 600;
       border: none;
       border-radius: 30px;
@@ -92,6 +103,8 @@
       width: 100%;
     }
 
+    .btn-blue { background: #2980b9; }
+
     .btn:hover { transform: translateY(-2px); }
 
     .step { display: none; }
@@ -102,14 +115,16 @@
 
   <div class="sims-card">
     
-    <!-- PASO 1: Saludo del Día del Estudiante -->
+    <!-- PASO 1: Mensaje y Foto Editada -->
     <div id="step1" class="step active">
       <div class="sims-header">21 de Septiembre 📚✨</div>
-      <h1>Supongo que sabés que el 21 es el día del estudiante y por eso quiero recordarte que confío en vos 🩺👩‍⚕️</h1>
+      <h1>Supongo que sabés que el 21 es el día del estudiante y por eso quiero recordarte que confío en vos</h1>
       
-      <!-- Foto de la futura obstetra -->
-      <div class="photo-container">
-        <img src="ro.jpg" alt="Futura Obstetra">
+      <div class="photo-card">
+        <div class="photo-container">
+          <img src="obstetra.png" alt="Futura Obstetra">
+        </div>
+        <div class="photo-caption">Futura Obstetra 🩺👩‍⚕️</div>
       </div>
 
       <div class="btn-container">
@@ -117,31 +132,21 @@
       </div>
     </div>
 
-    <!-- PASO 2: Pregunta para salir -->
+    <!-- PASO 2: Elección de Plan -->
     <div id="step2" class="step">
-      <div class="sims-header">Celebración 🥂</div>
-      <h1>¿Festejamos el día del estudiante con algo rico?</h1>
+      <div class="sims-header">Celebración ☕</div>
+      <h1>¿Festejamos con algo rico?</h1>
       <div class="btn-container">
-        <button class="btn" onclick="nextStep(3)">¡De una! 🟢</button>
+        <button class="btn btn-blue" onclick="finalizar('Merienda')">Merienda ☕</button>
+        <button class="btn btn-blue" onclick="finalizar('Picnic')">Picnic 🧺</button>
+        <button class="btn btn-blue" onclick="finalizar('Cine')">Cine 🍿</button>
       </div>
     </div>
 
-    <!-- PASO 3: Selección de Plan -->
+    <!-- PASO 3: Confirmación final -->
     <div id="step3" class="step">
-      <div class="sims-header">Plan 🍰</div>
-      <h1>¿Qué te gustaría hacer?</h1>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <button class="btn" style="background:#2980b9;" onclick="finalizar('Merienda')">Merienda ☕</button>
-        <button class="btn" style="background:#2980b9;" onclick="finalizar('Picnic')">Picnic 🧺</button>
-        <button class="btn" style="background:#2980b9;" onclick="finalizar('Cine')">Cine 🍿</button>
-        <button class="btn" style="background:#2980b9;" onclick="finalizar('Cena')">Cena 🍔</button>
-      </div>
-    </div>
-
-    <!-- PASO FINAL -->
-    <div id="step4" class="step">
-      <div class="sims-header">Confirmado 📲</div>
-      <h1>¡Listo! Mandame la confirmación por WhatsApp 😉</h1>
+      <div class="sims-header">Confirmación 📲</div>
+      <h1>¡Listo! Mandame la respuesta por WhatsApp 😉</h1>
       <button class="btn" style="margin-top: 15px;" onclick="enviarWhatsApp()">Enviar WhatsApp 📲</button>
     </div>
 
@@ -157,7 +162,7 @@
 
     function finalizar(plan) {
       planElegido = plan;
-      nextStep(4);
+      nextStep(3);
     }
 
     function enviarWhatsApp() {
