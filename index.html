@@ -25,11 +25,10 @@
       background: rgba(255, 255, 255, 0.96);
       border-radius: 24px;
       padding: 26px 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.12), inset 0 0 15px rgba(46,204,113,0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
       border: 3px solid #2ecc71;
       max-width: 400px;
       width: 100%;
-      position: relative;
     }
 
     .sims-header {
@@ -58,7 +57,6 @@
       font-size: 1.02rem;
       line-height: 1.5;
       margin-bottom: 22px;
-      text-align: center;
     }
 
     p.resumen-text {
@@ -78,7 +76,6 @@
       border-radius: 16px;
       padding: 8px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
     .photo-container {
@@ -104,7 +101,6 @@
     }
 
     .btn-container {
-      position: relative;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -114,7 +110,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-top: 10px;
     }
 
     .btn {
@@ -124,11 +119,10 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: all 0.2s ease;
       color: white;
       background: #27ae60;
       width: 100%;
+      transition: transform 0.2s;
     }
 
     .btn-blue { background: #3498db; }
@@ -136,14 +130,12 @@
 
     .btn:hover { transform: translateY(-2px); }
 
-    /* Cartelera Aldrey */
     .movie-grid {
       display: flex;
       flex-direction: column;
       gap: 10px;
       max-height: 340px;
       overflow-y: auto;
-      padding-right: 4px;
     }
 
     .movie-card {
@@ -156,13 +148,9 @@
       align-items: center;
       cursor: pointer;
       text-align: left;
-      transition: border-color 0.2s, transform 0.2s;
     }
 
-    .movie-card:hover {
-      border-color: #27ae60;
-      transform: translateY(-1px);
-    }
+    .movie-card:hover { border-color: #27ae60; }
 
     .movie-poster {
       width: 55px;
@@ -175,14 +163,10 @@
       justify-content: center;
       color: white;
       font-weight: bold;
-      padding: 4px;
       text-align: center;
     }
 
-    .movie-poster span {
-      font-size: 1.3rem;
-      margin-bottom: 2px;
-    }
+    .movie-poster span { font-size: 1.3rem; }
 
     .movie-info h3 {
       margin: 0 0 3px 0;
@@ -194,7 +178,6 @@
       margin: 0;
       color: #64748b;
       font-size: 0.78rem;
-      line-height: 1.25;
     }
 
     .step { display: none; }
@@ -205,8 +188,8 @@
 
   <div class="sims-card">
     
-    <!-- PASO 1: Mensaje y Foto -->
-    <div id="step1" class="step active">
+    <!-- PASO 1: Foto e Introducción -->
+    <div id="paso1" class="step active">
       <div class="sims-header">21 de Septiembre 📚🌸</div>
       <h1>Supongo que sabés que el 21 es el día del estudiante y por eso quiero recordarte que confío en vos</h1>
       
@@ -217,62 +200,60 @@
         <div class="photo-caption">Futura Obstetra 🩺👩‍⚕️</div>
       </div>
 
-      <div class="btn-container">
-        <button class="btn" onclick="irA('step2')">Continuar ✨</button>
-      </div>
+      <button class="btn" onclick="cambiarPaso('paso2')">Continuar ✨</button>
     </div>
 
-    <!-- PASO 2: Propuesta Primavera -->
-    <div id="step2" class="step">
+    <!-- PASO 2: Selección de Plan -->
+    <div id="paso2" class="step">
       <div class="sims-header">Especial Primavera 🌺</div>
       <p class="proposal-text">
         No hay nada más difícil que ser estudiante universitario porque casi todo depende de vos, más si algunos días son complicados emocionalmente. Por eso para descomprimir te propongo hacer algo lindo por la primavera:
       </p>
       
       <div class="grid-plans">
-        <button class="btn btn-blue" onclick="seleccionarPlan('Desayuno')">Desayuno ☕</button>
-        <button class="btn btn-blue" onclick="seleccionarPlan('Merienda')">Merienda 🍰</button>
-        <button class="btn btn-pink" onclick="seleccionarPlan('Cine')">Cine 🍿</button>
-        <button class="btn btn-blue" onclick="seleccionarPlan('Paseo en la costa')">Paseo en la costa 🌊</button>
+        <button class="btn btn-blue" onclick="guardarPlan('Desayuno')">Desayuno ☕</button>
+        <button class="btn btn-blue" onclick="guardarPlan('Merienda')">Merienda 🍰</button>
+        <button class="btn btn-pink" onclick="guardarPlan('Cine')">Cine 🍿</button>
+        <button class="btn btn-blue" onclick="guardarPlan('Paseo en la costa')">Paseo en la costa 🌊</button>
       </div>
     </div>
 
-    <!-- PASO 3A: Cafeterías -->
-    <div id="step3_cafeteria" class="step">
+    <!-- PASO 3A: Selección de Cafetería -->
+    <div id="paso3_cafeteria" class="step">
       <div class="sims-header">Lugar 🥐</div>
       <h1>¿Dónde te gustaría ir?</h1>
       <div class="btn-container">
-        <button class="btn btn-blue" onclick="seleccionarLugar('Sao')">Sao 🥐</button>
-        <button class="btn btn-blue" onclick="seleccionarLugar('La Fonte')">La Fonte ☕</button>
+        <button class="btn btn-blue" onclick="guardarLugar('Sao')">Sao 🥐</button>
+        <button class="btn btn-blue" onclick="guardarLugar('La Fonte')">La Fonte ☕</button>
       </div>
     </div>
 
-    <!-- PASO 3B: Cine (Paseo Aldrey) -->
-    <div id="step3_cine" class="step">
+    <!-- PASO 3B: Cartelera de Cine -->
+    <div id="paso3_cine" class="step">
       <div class="sims-header">Paseo Aldrey 🎬</div>
       <h1>¿Qué película te pinta ver?</h1>
       <div class="movie-grid">
-        <div class="movie-card" onclick="seleccionarLugar('Película: Hechizo de Amor')">
+        <div class="movie-card" onclick="guardarLugar('Película: Hechizo de Amor')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #8e44ad, #2c3e50);">
             <span>🔮</span> HECHIZO
           </div>
           <div class="movie-info">
             <h3>Hechizo de Amor</h3>
-            <p>Comedia dramática y romance sobre el reencuentro de las hermanas Owens.</p>
+            <p>Comedia dramática y romance sobre las hermanas Owens.</p>
           </div>
         </div>
 
-        <div class="movie-card" onclick="seleccionarLugar('Película: Resident Evil')">
+        <div class="movie-card" onclick="guardarLugar('Película: Resident Evil')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #c0392b, #7f8c8d);">
             <span>☣️</span> RESIDENT
           </div>
           <div class="movie-info">
             <h3>Resident Evil: Noche Cero</h3>
-            <p>Acción y suspenso en una noche en la ciudad.</p>
+            <p>Acción y suspenso en la ciudad.</p>
           </div>
         </div>
 
-        <div class="movie-card" onclick="seleccionarLugar('Película: La Odisea')">
+        <div class="movie-card" onclick="guardarLugar('Película: La Odisea')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #1e3799, #0c2461);">
             <span>🏛️</span> ODISEA
           </div>
@@ -282,122 +263,125 @@
           </div>
         </div>
 
-        <div class="movie-card" onclick="seleccionarLugar('Película: Pepita la Pistolera')">
+        <div class="movie-card" onclick="guardarLugar('Película: Pepita la Pistolera')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #d35400, #2c3e50);">
             <span>🔫</span> PEPITA
           </div>
           <div class="movie-info">
             <h3>Pepita la Pistolera</h3>
-            <p>Basada en la famosa historia real marplatense de 1985.</p>
+            <p>Basada en la famosa historia real marplatense.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PASO 4: Horarios -->
-    <div id="step4_horarios" class="step">
+    <!-- PASO 4: Selección de Horario -->
+    <div id="paso4_horarios" class="step">
       <div class="sims-header">Horario ⏰</div>
       <h1>¿A qué hora te queda mejor?</h1>
       
       <div id="horariosDesayuno" class="btn-container" style="display:none;">
-        <button class="btn btn-blue" onclick="seleccionarHorario('9:00 AM')">9:00 AM</button>
-        <button class="btn btn-blue" onclick="seleccionarHorario('10:00 AM')">10:00 AM</button>
-        <button class="btn btn-blue" onclick="seleccionarHorario('11:00 AM')">11:00 AM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('9:00 AM')">9:00 AM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('10:00 AM')">10:00 AM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('11:00 AM')">11:00 AM</button>
       </div>
 
       <div id="horariosTarde" class="btn-container" style="display:none;">
-        <button class="btn btn-blue" onclick="seleccionarHorario('4:30 PM')">4:30 PM</button>
-        <button class="btn btn-blue" onclick="seleccionarHorario('5:30 PM')">5:30 PM</button>
-        <button class="btn btn-blue" onclick="seleccionarHorario('6:30 PM')">6:30 PM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('4:30 PM')">4:30 PM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('5:30 PM')">5:30 PM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('6:30 PM')">6:30 PM</button>
       </div>
 
       <div id="horariosCine" class="btn-container" style="display:none;">
-        <button class="btn btn-blue" onclick="seleccionarHorario('6:00 PM')">6:00 PM</button>
-        <button class="btn btn-blue" onclick="seleccionarHorario('8:15 PM')">8:15 PM</button>
-        <button class="btn btn-blue" onclick="seleccionarHorario('10:00 PM')">10:00 PM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('6:00 PM')">6:00 PM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('8:15 PM')">8:15 PM</button>
+        <button class="btn btn-blue" onclick="guardarHorario('10:00 PM')">10:00 PM</button>
       </div>
     </div>
 
-    <!-- PASO 5: Encuentro -->
-    <div id="step5_encuentro" class="step">
+    <!-- PASO 5: Punto de Encuentro -->
+    <div id="paso5_encuentro" class="step">
       <div class="sims-header">Punto de Encuentro 🚗</div>
       <h1>¿Cómo hacemos?</h1>
       <div class="btn-container">
-        <button class="btn btn-blue" onclick="seleccionarEncuentro('Nos encontramos ahí 📍')">Nos encontramos ahí 📍</button>
-        <button class="btn btn-blue" onclick="seleccionarEncuentro('Te paso a buscar 🚗')">Te paso a buscar 🚗</button>
+        <button class="btn btn-blue" onclick="guardarEncuentro('Nos encontramos ahí 📍')">Nos encontramos ahí 📍</button>
+        <button class="btn btn-blue" onclick="guardarEncuentro('Te paso a buscar 🚗')">Te paso a buscar 🚗</button>
       </div>
     </div>
 
-    <!-- PASO FINAL: Confirmación -->
-    <div id="step_final" class="step">
+    <!-- PASO 6: Final y WhatsApp -->
+    <div id="paso6_final" class="step">
       <div class="sims-header">¡Nivel de relación ➕100! 💚</div>
       <h1>¡Perfecto! Todo listo 😉</h1>
-      <p id="resumen" class="resumen-text"></p>
-      <button class="btn" style="margin-top: 10px;" onclick="enviarWhatsApp()">Enviar confirmación por WhatsApp 📲</button>
+      <p id="resumenTexto" class="resumen-text"></p>
+      <button class="btn" onclick="enviarWhatsApp()">Enviar confirmación por WhatsApp 📲</button>
     </div>
 
   </div>
 
   <script>
-    let plan = '';
-    let lugar = '';
-    let horario = '';
-    let encuentro = '';
+    let miPlan = "";
+    let miLugar = "";
+    let miHorario = "";
+    let miEncuentro = "";
 
-    function irA(pasoId) {
-      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    function cambiarPaso(pasoId) {
+      const pasos = document.querySelectorAll('.step');
+      pasos.forEach(p => p.classList.remove('active'));
       document.getElementById(pasoId).classList.add('active');
     }
 
-    function seleccionarPlan(p) {
-      plan = p;
-      if (p === 'Desayuno' || p === 'Merienda') {
-        irA('step3_cafeteria');
-      } else if (p === 'Cine') {
-        irA('step3_cine');
-      } else if (p === 'Paseo en la costa') {
-        lugar = 'Paseo en la costa';
-        prepararHorarios('tarde');
+    function guardarPlan(planSeleccionado) {
+      miPlan = planSeleccionado;
+
+      if (planSeleccionado === 'Desayuno' || planSeleccionado === 'Merienda') {
+        cambiarPaso('paso3_cafeteria');
+      } else if (planSeleccionado === 'Cine') {
+        cambiarPaso('paso3_cine');
+      } else if (planSeleccionado === 'Paseo en la costa') {
+        miLugar = 'Paseo en la costa';
+        mostrarContenedorHorarios('tarde');
       }
     }
 
-    function seleccionarLugar(l) {
-      lugar = l;
-      if (plan === 'Desayuno') {
-        prepararHorarios('desayuno');
-      } else if (plan === 'Merienda') {
-        prepararHorarios('tarde');
-      } else if (plan === 'Cine') {
-        prepararHorarios('cine');
+    function guardarLugar(lugarSeleccionado) {
+      miLugar = lugarSeleccionado;
+
+      if (miPlan === 'Desayuno') {
+        mostrarContenedorHorarios('desayuno');
+      } else if (miPlan === 'Merienda') {
+        mostrarContenedorHorarios('tarde');
+      } else if (miPlan === 'Cine') {
+        mostrarContenedorHorarios('cine');
       }
     }
 
-    function prepararHorarios(tipo) {
+    function mostrarContenedorHorarios(tipo) {
       document.getElementById('horariosDesayuno').style.display = (tipo === 'desayuno') ? 'flex' : 'none';
       document.getElementById('horariosTarde').style.display = (tipo === 'tarde') ? 'flex' : 'none';
       document.getElementById('horariosCine').style.display = (tipo === 'cine') ? 'flex' : 'none';
-      irA('step4_horarios');
+      cambiarPaso('paso4_horarios');
     }
 
-    function seleccionarHorario(h) {
-      horario = h;
-      irA('step5_encuentro');
+    function guardarHorario(horarioSeleccionado) {
+      miHorario = horarioSeleccionado;
+      cambiarPaso('paso5_encuentro');
     }
 
-    function seleccionarEncuentro(e) {
-      encuentro = e;
-      
-      let detalle = lugar ? ` (${lugar})` : '';
-      document.getElementById('resumen').innerHTML = 
-        `Plan de <b>${plan}</b>${detalle} a las <b>${horario}</b>.<br><b>${encuentro}</b>.`;
+    function guardarEncuentro(encuentroSeleccionado) {
+      miEncuentro = encuentroSeleccionado;
 
-      irA('step_final');
+      let textoLugar = miLugar ? ` (${miLugar})` : '';
+      document.getElementById('resumenTexto').innerHTML = 
+        `Quedamos para hacer un plan de <b>${miPlan}</b>${textoLugar} a las <b>${miHorario}</b>.<br><b>${miEncuentro}</b>.`;
+
+      cambiarPaso('paso6_final');
     }
 
     function enviarWhatsApp() {
       const miNumero = "5492236907429"; 
-      let detalle = lugar ? ` (${lugar})` : '';
-      const mensaje = `¡Hola! Quedamos para hacer un plan de ${plan}${detalle} a las ${horario}. ${encuentro} 😊`;
+      let textoLugar = miLugar ? ` (${miLugar})` : '';
+      const mensaje = `¡Hola! Quedamos para hacer un plan de ${miPlan}${textoLugar} a las ${miHorario}. ${miEncuentro} 😊`;
       window.location.href = `https://wa.me/${miNumero}?text=${encodeURIComponent(mensaje)}`;
     }
   </script>
