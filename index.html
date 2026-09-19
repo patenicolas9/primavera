@@ -194,7 +194,7 @@
 
   <div class="sims-card">
     
-    <!-- PASO 1: Mensaje y Foto Editada -->
+    <!-- PASO 1: Mensaje y Foto -->
     <div id="step1" class="step active">
       <div class="sims-header">21 de Septiembre 📚🌸</div>
       <h1>Supongo que sabés que el 21 es el día del estudiante y por eso quiero recordarte que confío en vos</h1>
@@ -211,7 +211,7 @@
       </div>
     </div>
 
-    <!-- PASO 2: Reflexión y Propuesta Primavera -->
+    <!-- PASO 2: Reflexión y Propuesta -->
     <div id="step2" class="step">
       <div class="sims-header">Especial Primavera 🌺</div>
       <p class="proposal-text">
@@ -226,7 +226,7 @@
       </div>
     </div>
 
-    <!-- PASO 3A: Opciones para Desayuno / Merienda -->
+    <!-- PASO 3A: Cafeterías (Desayuno / Merienda) -->
     <div id="step3_cafeteria" class="step">
       <div class="sims-header">Lugar 🥐</div>
       <h1>¿Dónde te gustaría ir?</h1>
@@ -242,7 +242,7 @@
       <h1>¿Qué película te pinta ver?</h1>
       <div class="movie-grid">
         
-        <div class="movie-card" onclick="elegirLugar('Cine - Hechizo de Amor')">
+        <div class="movie-card" onclick="elegirLugar('Hechizo de Amor')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #8e44ad, #2c3e50);">
             <span>🔮</span> HECHIZO
           </div>
@@ -252,7 +252,7 @@
           </div>
         </div>
 
-        <div class="movie-card" onclick="elegirLugar('Cine - Resident Evil: Noche Cero')">
+        <div class="movie-card" onclick="elegirLugar('Resident Evil: Noche Cero')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #c0392b, #7f8c8d);">
             <span>☣️</span> RESIDENT
           </div>
@@ -262,7 +262,7 @@
           </div>
         </div>
 
-        <div class="movie-card" onclick="elegirLugar('Cine - La Odisea')">
+        <div class="movie-card" onclick="elegirLugar('La Odisea')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #1e3799, #0c2461);">
             <span>🏛️</span> ODISEA
           </div>
@@ -272,7 +272,7 @@
           </div>
         </div>
 
-        <div class="movie-card" onclick="elegirLugar('Cine - Pepita la Pistolera')">
+        <div class="movie-card" onclick="elegirLugar('Pepita la Pistolera')">
           <div class="movie-poster" style="background: linear-gradient(135deg, #d35400, #2c3e50);">
             <span>🔫</span> PEPITA
           </div>
@@ -285,7 +285,7 @@
       </div>
     </div>
 
-    <!-- PASO 4: Selección de Horarios según el plan -->
+    <!-- PASO 4: Selección de Horarios -->
     <div id="step4_horarios" class="step">
       <div class="sims-header">Horario ⏰</div>
       <h1>¿A qué hora te queda mejor?</h1>
@@ -346,9 +346,7 @@
     function elegirPlan(plan) {
       planElegido = plan;
       
-      if (plan === 'Desayuno') {
-        showStep('step3_cafeteria');
-      } else if (plan === 'Merienda') {
+      if (plan === 'Desayuno' || plan === 'Merienda') {
         showStep('step3_cafeteria');
       } else if (plan === 'Cine') {
         showStep('step3_cine');
@@ -393,6 +391,9 @@
       window.location.href = `https://wa.me/${miNumero}?text=${encodeURIComponent(mensaje)}`;
     }
   </script>
+
+</body>
+</html>
 
 </body>
 </html>
