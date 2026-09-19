@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los Sims - Especial Primavera 🌸</title>
+  <style>
+    * { box-sizing: border-box; }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #a8e6cf 0%, #dbede3 50%, #ffd3b6 100%);
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Diamante Plumbob Primavera */
+    .plumbob-container {
+      margin-bottom: -20px;
+      z-index: 10;
+    }
+    .plumbob {
+      width: 45px;
+      height: 90px;
+      background: linear-gradient(135deg, #00ff75, #00b33c);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      margin: 0 auto;
+      filter: drop-shadow(0 0 14px rgba(0, 255, 117, 0.9));
+      animation: spinPlumbob 4s infinite linear, floatPlumbob 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes floatPlumbob {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* Tarjeta estilo Interfaz de Los Sims Primavera */
+    .sims-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(240,253,244,0.96) 100%);
+      border: 4px solid #2ecc71;
+      border-radius: 25px;
+      padding: 25px 20px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15), inset 0 0 15px rgba(46,204,113,0.2);
+      max-width: 440px;
+      width: 100%;
+      position: relative;
+    }
+
+    .sims-header {
+      background: #27ae60;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      color: #1e5631;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    }
+
+    .btn-container {
+      position: relative;
+      min-height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-container-vertical {
+      flex-direction: column;
+      min-height: 140px;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      border: 2px solid white;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+      color: white;
+      z-index: 2;
+    }
+
+    .btn:hover { transform: scale(1.05); }
+
+    .btn-sims-green {
+      background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+      box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+    }
+
+    .btn-sims-red {
+      background: linear-gradient(180deg, #ff6b6b 0%, #ee5253 100%);
+      box-shadow: 0 4px 12px rgba(238, 82, 83, 0.4);
+    }
+
+    #noBtn {
+      transition: top 0.2s ease, left 0.2s ease;
+    }
+
+    .btn-sims-blue {
+      background: linear-gradient(180deg, #48dbfb 0%, #0abde3 100%);
+    }
+
+    /* Grid de opciones con imágenes */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .btn-card {
+      background: white;
+      border: 3px solid #a8e6cf;
+      border-radius: 18px;
+      padding: 8px;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .btn-card:hover { 
+      transform: scale(1.03);
+      border-color: #2ecc71;
+    }
+    .btn-card img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .btn-card span {
+      display: block;
+      margin-top: 8px;
+      font-weight: bold;
+      color: #1e5631;
+      font-size: 0.95rem;
+    }
+
+    /* Cartelera de Películas */
+    .movie-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .movie-card {
+      background: white;
+      border: 3px solid #a8e6cf;
+      border-radius: 16px;
+      padding: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.02);
+      border-color: #2ecc71;
+    }
+
+    .movie-poster {
+      width: 75px;
+      height: 110px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      padding: 5px;
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .movie-poster span {
+      font-size: 1.8rem;
+      margin-bottom: 3px;
+    }
+
+    .movie-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .movie-info h3 {
+      margin: 0 0 5px 0;
+      color: #1e5631;
+      font-size: 1.05rem;
+    }
+
+    .movie-info p {
+      margin: 0;
+      color: #555;
+      font-size: 0.82rem;
+      line-height: 1.25;
+    }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .sim-icon {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #1e5631;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Diamante verde flotante de Los Sims -->
+  <div class="plumbob-container">
+    <div class="plumbob"></div>
+  </div>
+
+  <div class="sims-card">
+    
+    <!-- PASO 1: Nombre de Sim -->
+    <div id="step1" class="step active">
+      <div class="sims-header">Especial Primavera 🌸</div>
+      <h1>¿Cómo te llamas?</h1>
+      <div class="btn-container">
+        <button class="btn btn-sims-green" onclick="nextStep(2)">Ro 💚</button>
+        <button class="btn btn-sims-red" onclick="nextStep(2)">Ro ❤️</button>
+      </div>
+    </div>
+
+    <!-- PASO 2: Pregunta Sorpresa -->
+    <div id="step2" class="step">
+      <div class="sims-header">Notificación 💬</div>
+      <h1>¿Crees que te voy a sorprender?</h1>
+      <div class="btn-container">
+        <button class="btn btn-sims-blue" onclick="nextStep(3)">¡Obvio que sí!</button>
+        <button class="btn btn-sims-blue" onclick="nextStep(3)">No</button>
+      </div>
+    </div>
+
+    <!-- PASO 3: ¿Querés salir conmigo? -->
+    <div id="step3" class="step">
+      <div class="sims-header">Nueva Cita 🌹</div>
+      <h1>¿Querés recibir la Primavera conmigo? 🌺</h1>
+      <div class="btn-container btn-container-vertical">
+        <button class="btn btn-sims-green" onclick="nextStep(4)">¡Sí, acepto!</button>
+        <button class="btn btn-sims-red" id="noBtn" onmouseover="moverBoton()" onclick="moverBoton()" ontouchstart="moverBoton()">Más adelante</button>
+      </div>
+    </div>
+
+    <!-- PASO 4: Selección de Día -->
+    <div id="step4" class="step">
+      <div class="sims-header">Calendario 📅</div>
+      <h1>¿Qué día preferís?</h1>
+      <div class="btn-container">
+        <button class="btn btn-sims-blue" onclick="selectOption('dia', 'Lunes'); nextStep(5)">Lunes</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('dia', 'Martes'); nextStep(5)">Martes</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('dia', 'Miércoles'); nextStep(5)">Miércoles</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('dia', 'Jueves'); nextStep(5)">Jueves</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('dia', 'Viernes'); nextStep(5)">Viernes</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('dia', 'Sábado'); nextStep(5)">Sábado</button>
+      </div>
+    </div>
+
+    <!-- PASO 5: Opciones con Fotos (Incluye Picnic Primavera) -->
+    <div id="step5" class="step">
+      <div class="sims-header">Deseo de Sim 🍰</div>
+      <h1>¿Qué te gustaría hacer?</h1>
+      <div class="grid-cards">
+        <div class="btn-card" onclick="selectOption('comida', 'Desayuno'); showHorarios('desayuno'); nextStep(6)">
+          <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=400&q=80" alt="Desayuno">
+          <span>Desayuno</span>
+        </div>
+        <div class="btn-card" onclick="selectOption('comida', 'Merienda'); showHorarios('merienda'); nextStep(6)">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Merienda">
+          <span>Merienda</span>
+        </div>
+        <div class="btn-card" onclick="selectOption('comida', 'Picnic en la Costa'); showHorarios('merienda'); nextStep(6)">
+          <img src="https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=400&q=80" alt="Picnic">
+          <span>Picnic Primavera 🧺</span>
+        </div>
+        <div class="btn-card" onclick="selectOption('comida', 'Cine'); showHorarios('cine'); nextStep(6)">
+          <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80" alt="Cine">
+          <span>Cine</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 6: Horarios Dinámicos -->
+    <div id="step6" class="step">
+      <div class="sims-header">Reloj de la ciudad ⏰</div>
+      <h1>¿A qué hora?</h1>
+      
+      <div id="horariosDesayuno" class="btn-container" style="display:none;">
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '9:00 AM'); irAlLugar()">9 AM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '10:00 AM'); irAlLugar()">10 AM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '11:00 AM'); irAlLugar()">11 AM</button>
+      </div>
+
+      <div id="horariosMerienda" class="btn-container" style="display:none;">
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '4:00 PM'); irAlLugar()">4 PM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '5:00 PM'); irAlLugar()">5 PM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '6:00 PM'); irAlLugar()">6 PM</button>
+      </div>
+
+      <div id="horariosCine" class="btn-container" style="display:none;">
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '5:00 PM'); irAlLugar()">5 PM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '6:00 PM'); irAlLugar()">6 PM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '7:00 PM'); irAlLugar()">7 PM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '8:00 PM'); irAlLugar()">8 PM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '9:00 PM'); irAlLugar()">9 PM</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('hora', '10:00 PM'); irAlLugar()">10 PM</button>
+      </div>
+    </div>
+
+    <!-- PASO 7: Lugar -->
+    <div id="step7" class="step">
+      <div class="sims-header">Mapa del barrio 📍</div>
+      <h1>¿Dónde nos vemos?</h1>
+      
+      <!-- Opciones Normales (Desayuno, Merienda, Picnic) -->
+      <div id="lugaresNormales" class="btn-container" style="display:none;">
+        <button class="btn btn-sims-blue" onclick="selectOption('lugar', 'Sao'); finalizar()">Sao</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('lugar', 'La Fonte'); finalizar()">La Fonte</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('lugar', 'Te busco por donde te quede cómodo'); finalizar()">Te busco por donde te quede cómodo 🚗</button>
+      </div>
+
+      <!-- Opciones para Cine -->
+      <div id="lugaresCine" class="btn-container btn-container-vertical" style="display:none;">
+        <button class="btn btn-sims-blue" onclick="selectOption('lugar', 'Te busco por donde te quede cómodo'); nextStep(8)">Te busco por donde te quede cómodo 🚗</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('lugar', 'En el Aldrey'); nextStep(8)">En el Aldrey</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('lugar', 'En Los Gallegos'); nextStep(8)">En Los Gallegos</button>
+      </div>
+    </div>
+
+    <!-- PASO 8 (SOLO CINE): Candy Bar -->
+    <div id="step8" class="step">
+      <div class="sims-header">Candy Bar 🍿</div>
+      <h1>¿Qué querés comer?</h1>
+      <div class="btn-container">
+        <button class="btn btn-sims-blue" onclick="selectOption('comidaCine', 'Pochoclos'); nextStep(9)">Pochoclos 🍿</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('comidaCine', 'Nachos'); nextStep(9)">Nachos 🧀</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('comidaCine', 'Luccianos'); nextStep(9)">Luccianos 🍦</button>
+        <button class="btn btn-sims-blue" onclick="selectOption('comidaCine', 'Sorpresa'); nextStep(9)">Sorpresa ✨</button>
+      </div>
+    </div>
+
+    <!-- PASO 9 (SOLO CINE): Cartelera Actualizada de Cines -->
+    <div id="step9" class="step">
+      <div class="sims-header">Cartelera de Cine 🎬</div>
+      <h1>¿Qué película ver?</h1>
+      <div class="movie-grid">
+        
+        <div class="movie-card" onclick="selectOption('pelicula', 'Hechizo de Amor: La magia continúa'); finalizar()">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #8e44ad, #2c3e50);">
+            <span>🔮</span> HECHIZO
+          </div>
+          <div class="movie-info">
+            <h3>Hechizo de Amor: La magia continúa</h3>
+            <p>Las hermanas Owens vuelven a encontrarse con la magia en este esperado clásico renovado.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="selectOption('pelicula', 'Resident Evil: Noche Cero'); finalizar()">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+            <span>☣️</span> RESIDENT
+          </div>
+          <div class="movie-info">
+            <h3>Resident Evil: Noche Cero</h3>
+            <p>Sombra, adrenalina y terror en el origen de la noche más peligrosa de la saga.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="selectOption('pelicula', 'Coyote vs ACME'); finalizar()">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #e67e22, #d35400);">
+            <span>🐺</span> COYOTE
+          </div>
+          <div class="movie-info">
+            <h3>Coyote vs. ACME</h3>
+            <p>Wile E. Coyote demanda a la corporación ACME en el tribunal más divertido del cine.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="selectOption('pelicula', 'Pepita la Pistolera'); finalizar()">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #d35400, #2c3e50);">
+            <span>🔫</span> PEPITA
+          </div>
+          <div class="movie-info">
+            <h3>Pepita la Pistolera</h3>
+            <p>Inspirada en el mito marplatense de 1985. Una mujer desafía todo y nace la leyenda.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="selectOption('pelicula', 'Tadeo el Explorador y la Lámpara Maravillosa'); finalizar()">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #f1c40f, #f39c12);">
+            <span>🏺</span> TADEO
+          </div>
+          <div class="movie-info">
+            <h3>Tadeo el Explorador</h3>
+            <p>Una divertida aventura llena de secretos, magia y mapas misteriosos.</p>
+          </div>
+        </div>
+
+        <div class="movie-card" onclick="selectOption('pelicula', 'El Árbol Mágico'); finalizar()">
+          <div class="movie-poster" style="background: linear-gradient(135deg, #27ae60, #16a085);">
+            <span>🌳</span> ÁRBOL
+          </div>
+          <div class="movie-info">
+            <h3>El Árbol Mágico</h3>
+            <p>Un viaje lleno de fantasía, naturaleza y encanto para disfrutar en la pantalla grande.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PASO FINAL: Confirmación de Cita -->
+    <div id="step10" class="step">
+      <div class="sims-header">¡Relación al máximo 💚🌸!</div>
+      <h1>¡Perfecto! Nos vemos 😉</h1>
+      <div class="sim-icon">🌸 Dag dag! 🍃</div>
+      <p id="resumen" style="color: #1e5631; margin-top: 15px; font-size: 1.05rem;"></p>
+      <button class="btn btn-sims-green" style="margin-top: 20px;" onclick="enviarWhatsApp()">Enviar confirmación por WhatsApp 📲</button>
+    </div>
+
+  </div>
+
+  <script>
+    const cita = { dia: '', comida: '', hora: '', lugar: '', comidaCine: '', pelicula: '' };
+
+    function moverBoton() {
+      const noBtn = document.getElementById('noBtn');
+      const card = document.querySelector('.sims-card');
+      
+      noBtn.style.position = 'absolute';
+
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = cardRect.width - btnRect.width - 20;
+      const maxY = cardRect.height - btnRect.height - 20;
+
+      const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    }
+
+    function nextStep(stepNumber) {
+      document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+      document.getElementById(`step${stepNumber}`).classList.add('active');
+    }
+
+    function selectOption(key, value) { cita[key] = value; }
+
+    function showHorarios(tipo) {
+      document.getElementById('horariosDesayuno').style.display = tipo === 'desayuno' ? 'flex' : 'none';
+      document.getElementById('horariosMerienda').style.display = tipo === 'merienda' ? 'flex' : 'none';
+      document.getElementById('horariosCine').style.display = tipo === 'cine' ? 'flex' : 'none';
+    }
+
+    function irAlLugar() {
+      if (cita.comida === 'Cine') {
+        document.getElementById('lugaresNormales').style.display = 'none';
+        document.getElementById('lugaresCine').style.display = 'flex';
+      } else {
+        document.getElementById('lugaresNormales').style.display = 'flex';
+        document.getElementById('lugaresCine').style.display = 'none';
+      }
+      nextStep(7);
+    }
+
+    function finalizar() {
+      nextStep(10);
+      
+      let textoLugar = cita.lugar;
+      if (cita.lugar === 'Te busco por donde te quede cómodo') {
+        textoLugar = '<b>Te busco por donde te quede cómodo</b>';
+      } else {
+        textoLugar = `en <b>${cita.lugar}</b>`;
+      }
+
+      let detalleExtra = '';
+      if (cita.comida === 'Cine') {
+        detalleExtra = `<br>Película: <b>${cita.pelicula}</b> | Snack: <b>${cita.comidaCine}</b>`;
+      }
+
+      document.getElementById('resumen').innerHTML = 
+        `Cita de Primavera programada para el <b>${cita.dia}</b>: Plan de <b>${cita.comida}</b> a las <b>${cita.hora}</b> (${textoLugar}).${detalleExtra}`;
+    }
+
+    function enviarWhatsApp() {
+      const miNumero = "5492236907429"; 
+      
+      let detalleCine = '';
+      if (cita.comida === 'Cine') {
+        detalleCine = ` (Película: ${cita.pelicula}, Snacks: ${cita.comidaCine})`;
+      }
+
+      const mensaje = `¡Hola! Cita de Primavera aceptada en Los Sims 🌸 Quedamos el ${cita.dia} para ${cita.comida} a las ${cita.hora} (${cita.lugar})${detalleCine} 😊`;
+      window.location.href = `https://wa.me/${miNumero}?text=${encodeURIComponent(mensaje)}`;
+    }
+  </script>
+
+</body>
+</html>
